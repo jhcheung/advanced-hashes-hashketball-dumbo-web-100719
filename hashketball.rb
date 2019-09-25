@@ -99,7 +99,7 @@ end
 
 def winning_team
   game_hash.reduce(nil) do |memo, (key,value)|
-    value[:totalscore] = value[:players].reduce() do
-    end 
+    value[:totalscore] = value[:players].reduce() do |players|  
+      end
   end 
 end 
