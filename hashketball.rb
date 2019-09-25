@@ -88,7 +88,7 @@ def most_points_scored
     value[:players].each do |player|
       player.each do |name, stats|
         if !memo || stats[:points] > maxpoints
-          maxshoe = stats[:points]
+          maxpoints = stats[:points]
           memo = name
         end
       end 
