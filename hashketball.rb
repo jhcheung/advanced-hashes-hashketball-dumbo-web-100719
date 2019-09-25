@@ -82,49 +82,7 @@ def big_shoe_rebounds
   end 
 end 
 
-def statleader(stat)
-  maxstat = 0
-  game_hash.reduce(nil) do |stat_leader, (key, team)|
-    team[:players].each do |player|
-      player.each do |name, stats|
-        if !memo || stats[stat] > maxstat
-          maxstat = stats[stat]
-          stat_leader = name
-        end
-      end 
-    end 
-    stat_leader
-  end
-end
 
-def winning_team
-  winning_score = 0
-  game_hash.reduce(nil) do |winner, (key, team)|
-    team[:totalscore] = 
-      team[:players].reduce(0) do |total, players|  
-        players.each do |name, stats|
-          total += stats[:points]
-        end 
-        total
-      end
-    if team[:totalscore] > winning_score
-      winner = team[:team_name]
-      winning_score = team[:totalscore]
-    end 
-    winner
-  end 
-end 
-
-def most_points_scored
-  stat_leader(:points)
-end 
-
-def player_with_longest_name
-  
-end 
-
-=begin
-# commented out to try using one method to do work
 def most_points_scored
   maxpoints = 0
   game_hash.reduce(nil) do |point_leader, (key, team)|
@@ -172,4 +130,3 @@ def long_name_steals_a_ton?
     memo
   end
 end
-=end
