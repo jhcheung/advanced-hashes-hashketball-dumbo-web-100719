@@ -138,6 +138,7 @@ def long_name_steals_a_ton?
       player.each do |name, stats|
         if stats[:steals] > highest_steals
           highest_steals = stats[:steals]
+          memo = false if memo
           memo = true if name == player_with_longest_name
         end
       end 
