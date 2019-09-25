@@ -99,7 +99,7 @@ end
 
 def winning_team
   winning_score = 0
-  game_hash.reduce(nil) do |memo, (key,team)|
+  game_hash.reduce(nil) do |memo, (key, team)|
     team[:totalscore] = 
       team[:players].reduce(0) do |total, players|  
         players.each do |name, stats|
@@ -116,5 +116,15 @@ def winning_team
 end 
 
 def player_with_longest_name
-  
-end 
+  longest_name_char = 0 
+  game_hash.reduce(nil) do |memo, (key, team)|
+    team[:players].each do |player|
+      player.each do |name, stats|
+        if name.length > longest_name_char
+          longest_name_char = name.length
+          memo = name
+        end
+      end 
+    end 
+    memo
+end
