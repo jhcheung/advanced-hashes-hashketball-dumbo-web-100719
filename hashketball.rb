@@ -8,38 +8,38 @@ def game_hash
 end 
 
 def num_points_scored(name)
-  game_hash.reduce(nil) do |memo, (key, team)|
+  game_hash.reduce(nil) do |pts, (key, team)|
     team[:players].each do |player|
       if player[name]
-        memo = player[name][:points]
+        pts = player[name][:points]
       end 
     end
-    memo
+    pts
   end 
 end 
 
 def shoe_size(name)
-  game_hash.reduce(nil) do |memo, (key, team)|
+  game_hash.reduce(nil) do |shoesize, (key, team)|
     team[:players].each do |player|
       if player[name]
-        memo = player[name][:shoe]
+        shoesize = player[name][:shoe]
       end 
     end
-    memo
+    shoesize
   end 
 end 
 
 def team_colors(teamname)
-  game_hash.reduce(nil) do |memo, (key, team)|
-    memo = team[:colors] if teamname == team[:team_name]
-    memo
+  game_hash.reduce(nil) do |teamcolors, (key, team)|
+    teamcolors = team[:colors] if teamname == team[:team_name]
+    teamcolors
   end 
 end 
 
 def team_names
-  game_hash.reduce([]) do |memo, (key, team)|
-    memo.push(team[:team_name])
-    memo
+  game_hash.reduce([]) do |teamnames, (key, team)|
+    teamnames.push(team[:team_name])
+    teamnames
   end 
 end 
 
@@ -48,11 +48,11 @@ def player_numbers(teamname)
     if teamname == team[:team_name]
       team[:players].each do |player|
         player.each do |name, stats|
-          memo.push(stats[:number])
+          jersey_numbers.push(stats[:number])
         end 
       end 
     end 
-    memo
+    jersey_numbers
   end 
 end 
 
