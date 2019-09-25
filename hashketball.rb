@@ -72,8 +72,9 @@ def big_shoe_rebounds
   game_hash.reduce(nil) do |memo, (key, value)|
     value[:players].each do |player|
       player.each do |name, stats|
-        maxshoe = stats[:shoe] if !memo
-        memo = stats[:rebounds] if !memo
+        if !memo || stats[:shoe] > maxshoe
+          maxshoe = stats[:shoe]
+          memo = stats[:rebounds] o
         if maxshoe < stats[:shoe]
           memo = stats[:rebounds] 
           maxshoe = stats[:shoe]
