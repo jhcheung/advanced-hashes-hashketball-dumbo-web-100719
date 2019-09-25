@@ -97,22 +97,6 @@ def statleader(stat)
   end
 end
 
-=begin
-def most_points_scored
-  maxpoints = 0
-  game_hash.reduce(nil) do |point_leader, (key, team)|
-    team[:players].each do |player|
-      player.each do |name, stats|
-        if !leader || stats[:points] > maxpoints
-          maxpoints = stats[:points]
-          point_leader = name
-        end
-      end 
-    end 
-    point_leader
-  end 
-end 
-
 def winning_team
   winning_score = 0
   game_hash.reduce(nil) do |winner, (key, team)|
@@ -130,6 +114,32 @@ def winning_team
     winner
   end 
 end 
+
+def most_points_scored
+  stat_leader(:points)
+end 
+
+def player_with_longest_name
+  
+end 
+
+=begin
+# commented out to try using one method to do work
+def most_points_scored
+  maxpoints = 0
+  game_hash.reduce(nil) do |point_leader, (key, team)|
+    team[:players].each do |player|
+      player.each do |name, stats|
+        if !leader || stats[:points] > maxpoints
+          maxpoints = stats[:points]
+          point_leader = name
+        end
+      end 
+    end 
+    point_leader
+  end 
+end 
+
 
 def player_with_longest_name
   longest_name_char = 0 
