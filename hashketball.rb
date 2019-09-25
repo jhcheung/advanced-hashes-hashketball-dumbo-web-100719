@@ -133,7 +133,6 @@ end
 
 def long_name_steals_a_ton?
   highest_steals = 0 
-  
   game_hash.reduce(false) do |memo, (key, team)|
     team[:players].each do |player|
       player.each do |name, stats|
