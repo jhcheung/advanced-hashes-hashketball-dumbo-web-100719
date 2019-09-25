@@ -44,7 +44,7 @@ def team_names
 end 
 
 def player_numbers(teamname)
-  game_hash.reduce([]) do |memo, (key, team)|
+  game_hash.reduce([]) do |jersey_numbers, (key, team)|
     if teamname == team[:team_name]
       team[:players].each do |player|
         player.each do |name, stats|
@@ -57,28 +57,28 @@ def player_numbers(teamname)
 end 
 
 def player_stats(name)
-  game_hash.reduce({}) do |memo, (key, team)|
+  game_hash.reduce({}) do |stathash, (key, team)|
     team[:players].each do |player|
       if player[name]
-        memo = player[name]
+        stathash = player[name]
       end 
     end
-    memo
+    stathash
   end 
 end 
 
 def big_shoe_rebounds
   maxshoe = 0
-  game_hash.reduce(nil) do |memo, (key, team)|
+  game_hash.reduce(nil) do |rebounds, (key, team)|
     team[:players].each do |player|
       player.each do |name, stats|
-        if !memo || stats[:shoe] > maxshoe
+        if !rebounds || stats[:shoe] > maxshoe
           maxshoe = stats[:shoe]
-          memo = stats[:rebounds] 
+          rebounds = stats[:rebounds] 
         end
       end 
     end 
-    memo
+    rebounds
   end 
 end 
 
