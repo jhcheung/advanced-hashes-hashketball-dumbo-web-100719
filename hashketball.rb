@@ -131,5 +131,17 @@ def player_with_longest_name
 end
 
 def long_name_steals_a_ton?
-  game_has.reduce(nil) do
+  highest_steals = 0 
+  
+  game_hash.reduce(false) do |memo, (key, team)|
+    team[:players].each do |player|
+      player.each do |name, stats|
+        if stats[:steals] > highest_steals
+          highest_steals = stats[:steals]
+          memo = true if name == player_with_longest_name
+        end
+      end 
+    end 
+    memo
+  end
 end 
