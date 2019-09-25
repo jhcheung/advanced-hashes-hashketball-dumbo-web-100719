@@ -8,8 +8,8 @@ def game_hash
 end 
 
 def num_points_scored(name)
-  game_hash.reduce(nil) do |memo, (key, value)|
-    value[:players].each do |player|
+  game_hash.reduce(nil) do |memo, (key, team)|
+    team[:players].each do |player|
       if player[name]
         memo = player[name][:points]
       end 
@@ -19,8 +19,8 @@ def num_points_scored(name)
 end 
 
 def shoe_size(name)
-  game_hash.reduce(nil) do |memo, (key, value)|
-    value[:players].each do |player|
+  game_hash.reduce(nil) do |memo, (key, team)|
+    team[:players].each do |player|
       if player[name]
         memo = player[name][:shoe]
       end 
@@ -30,8 +30,8 @@ def shoe_size(name)
 end 
 
 def team_colors(teamname)
-  game_hash.reduce(nil) do |memo, (key, value)|
-    memo = value[:colors] if teamname == value[:team_name]
+  game_hash.reduce(nil) do |memo, (key, team)|
+    memo = team[:colors] if teamname == value[:team_name]
     memo
   end 
 end 
@@ -113,4 +113,8 @@ def winning_team
     end 
     memo
   end 
+end 
+
+def player_with_longest_name
+  
 end 
