@@ -98,8 +98,15 @@ def most_points_scored
 end 
 
 def winning_team
-  game_hash.reduce(nil) do |memo, (key,value)|
-    value[:totalscore] = value[:players].reduce() do |players|  
+  game_hash.reduce(0) do |memo, (key,value)|
+    
+    value[:totalscore] = 
+      value[:players].reduce(0) do |total, players|  
+        players.each do |name, stats|
+          total += stats[:points]
+        end 
+        total
       end
+    
   end 
 end 
