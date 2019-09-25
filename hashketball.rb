@@ -74,13 +74,11 @@ def big_shoe_rebounds
       player.each do |name, stats|
         if !memo || stats[:shoe] > maxshoe
           maxshoe = stats[:shoe]
-          memo = stats[:rebounds] o
-        if maxshoe < stats[:shoe]
           memo = stats[:rebounds] 
-          maxshoe = stats[:shoe]
         end
       end 
     end 
     memo
   end 
 end 
+
