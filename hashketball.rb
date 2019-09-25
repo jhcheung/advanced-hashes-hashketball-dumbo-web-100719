@@ -129,3 +129,7 @@ def player_with_longest_name
     memo
   end 
 end
+
+def long_name_steals_a_ton?
+  game_has.reduce(nil) do
+end 
