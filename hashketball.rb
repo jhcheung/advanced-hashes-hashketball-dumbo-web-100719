@@ -109,7 +109,7 @@ def winning_team
       end
     if value[:totalscore] > winning_score
       memo = value[:team_name]
-      winningscore = value[:totalscore]
+      winning_score = value[:totalscore]
     end 
     memo
   end 
