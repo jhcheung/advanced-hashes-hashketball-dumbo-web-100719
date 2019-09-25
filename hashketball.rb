@@ -85,7 +85,7 @@ end
 def most_points_scored
   maxpoints = 0
   game_hash.reduce(nil) do |memo, (key, team)|
-    value[:players].each do |player|
+    team[:players].each do |player|
       player.each do |name, stats|
         if !memo || stats[:points] > maxpoints
           maxpoints = stats[:points]
@@ -99,17 +99,17 @@ end
 
 def winning_team
   winning_score = 0
-  game_hash.reduce(nil) do |memo, (key,value)|
-    value[:totalscore] = 
-      value[:players].reduce(0) do |total, players|  
+  game_hash.reduce(nil) do |memo, (key,team)|
+    team[:totalscore] = 
+      team[:players].reduce(0) do |total, players|  
         players.each do |name, stats|
           total += stats[:points]
         end 
         total
       end
-    if value[:totalscore] > winning_score
-      memo = value[:team_name]
-      winning_score = value[:totalscore]
+    if team[:totalscore] > winning_score
+      memo = team[:team_name]
+      winning_score = team[:totalscore]
     end 
     memo
   end 
