@@ -82,40 +82,40 @@ def big_shoe_rebounds
   end 
 end 
 
-def moststat(stat)
-  maxpoints = 0
-  game_hash.reduce(nil) do |memo, (key, team)|
+def statleader(stat)
+  maxstat = 0
+  game_hash.reduce(nil) do |stat_leader, (key, team)|
     team[:players].each do |player|
       player.each do |name, stats|
-        if !memo || stats[:points] > maxpoints
-          maxpoints = stats[:points]
-          memo = name
+        if !memo || stats[stat] > maxstat
+          maxstat = stats[stat]
+          stat_leader = name
         end
       end 
     end 
-    memo
+    stat_leader
   end
 end
 
-
+=begin
 def most_points_scored
   maxpoints = 0
-  game_hash.reduce(nil) do |memo, (key, team)|
+  game_hash.reduce(nil) do |point_leader, (key, team)|
     team[:players].each do |player|
       player.each do |name, stats|
-        if !memo || stats[:points] > maxpoints
+        if !leader || stats[:points] > maxpoints
           maxpoints = stats[:points]
-          memo = name
+          point_leader = name
         end
       end 
     end 
-    memo
+    point_leader
   end 
 end 
 
 def winning_team
   winning_score = 0
-  game_hash.reduce(nil) do |memo, (key, team)|
+  game_hash.reduce(nil) do |winner, (key, team)|
     team[:totalscore] = 
       team[:players].reduce(0) do |total, players|  
         players.each do |name, stats|
@@ -124,25 +124,25 @@ def winning_team
         total
       end
     if team[:totalscore] > winning_score
-      memo = team[:team_name]
+      winner = team[:team_name]
       winning_score = team[:totalscore]
     end 
-    memo
+    winner
   end 
 end 
 
 def player_with_longest_name
   longest_name_char = 0 
-  game_hash.reduce(nil) do |memo, (key, team)|
+  game_hash.reduce(nil) do |name_leader, (key, team)|
     team[:players].each do |player|
       player.each do |name, stats|
         if name.length > longest_name_char
           longest_name_char = name.length
-          memo = name
+          name_leader = name
         end
       end 
     end 
-    memo
+    name_leader
   end 
 end
 
@@ -161,4 +161,5 @@ def long_name_steals_a_ton?
     end 
     memo
   end
-end 
+end
+=end
