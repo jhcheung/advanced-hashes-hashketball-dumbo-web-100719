@@ -82,7 +82,20 @@ def big_shoe_rebounds
   end 
 end 
 
-
+def moststat(stat)
+  maxpoints = 0
+  game_hash.reduce(nil) do |memo, (key, team)|
+    team[:players].each do |player|
+      player.each do |name, stats|
+        if !memo || stats[:points] > maxpoints
+          maxpoints = stats[:points]
+          memo = name
+        end
+      end 
+    end 
+    memo
+  end
+end
 
 
 def most_points_scored
