@@ -31,24 +31,24 @@ end
 
 def team_colors(teamname)
   game_hash.reduce(nil) do |memo, (key, team)|
-    memo = team[:colors] if teamname == value[:team_name]
+    memo = team[:colors] if teamname == team[:team_name]
     memo
   end 
 end 
 
 def team_names
-  game_hash.reduce([]) do |memo, (key, value)|
-    memo.push(value[:team_name])
+  game_hash.reduce([]) do |memo, (key, team)|
+    memo.push(team[:team_name])
     memo
   end 
 end 
 
 def player_numbers(teamname)
-  game_hash.reduce([]) do |memo, (key, value)|
-    if teamname == value[:team_name]
-      value[:players].each do |player|
-        player.each do |key, value|
-          memo.push(value[:number])
+  game_hash.reduce([]) do |memo, (key, team)|
+    if teamname == team[:team_name]
+      team[:players].each do |player|
+        player.each do |name, stats|
+          memo.push(stats[:number])
         end 
       end 
     end 
@@ -57,8 +57,8 @@ def player_numbers(teamname)
 end 
 
 def player_stats(name)
-  game_hash.reduce({}) do |memo, (key, value)|
-    value[:players].each do |player|
+  game_hash.reduce({}) do |memo, (key, team)|
+    team[:players].each do |player|
       if player[name]
         memo = player[name]
       end 
@@ -69,8 +69,8 @@ end
 
 def big_shoe_rebounds
   maxshoe = 0
-  game_hash.reduce(nil) do |memo, (key, value)|
-    value[:players].each do |player|
+  game_hash.reduce(nil) do |memo, (key, team)|
+    team[:players].each do |player|
       player.each do |name, stats|
         if !memo || stats[:shoe] > maxshoe
           maxshoe = stats[:shoe]
@@ -84,7 +84,7 @@ end
 
 def most_points_scored
   maxpoints = 0
-  game_hash.reduce(nil) do |memo, (key, value)|
+  game_hash.reduce(nil) do |memo, (key, team)|
     value[:players].each do |player|
       player.each do |name, stats|
         if !memo || stats[:points] > maxpoints
